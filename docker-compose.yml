@@ -1,0 +1,60 @@
+version: "3.9"
+
+# ── 灵犀（Discoverer）— 一键部署配置 ──────────────────
+# 启动: docker-compose up -d
+# 访问: http://localhost:3000 (前端) / http://localhost:8000 (后端API)
+
+services:
+  # ── 后端 API 服务 ─────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # 数据持久化（TDX文件 + Parquet缓存 + SQLite）
+      - ./data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:////app/data/discoverer.db
+      - TDX_DATA_DIR=/app/data/hsjday/hsjday
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-discoverer-prod-change-me}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - LLM_BASE_URL=${LLM_BASE_URL:-https://api.deepseek.com}
+      - LLM_MODEL=${LLM_MODEL:-deepseek-chat}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/system/status"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  # ── 前端 Web 服务（Nginx 静态 + API 代理）───────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── PostgreSQL（可选，替代默认 SQLite）──────────────
+  # postgres:
+  #   image: postgres:16-alpine
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_USER: discoverer
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD:-discoverer}
+  #     POSTGRES_DB: discoverer
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+# ── 持久化卷 ──────────────────────────────────────────
+# volumes:
+#   pgdata:

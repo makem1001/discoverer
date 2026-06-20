@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+.env
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# 数据文件（过大，不应提交）
+*.npy
+*.parquet
+*.day
+data/hsjday/
+data/daily/
+data/signals/
+data/discoverer.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 部署
+docker-compose.override.yml
+
+# 测试产物
+.cache/
+.pytest_cache/
+coverage/
+htmlcov/
+
+# 日志
+*.log

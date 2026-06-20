@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 min-h-screen;
+  }
+
+  /* 中国习惯：红涨绿跌 (bull-red = 涨/up, bear-green = 跌/down) */
+  .text-up {
+    color: #cf1322;
+  }
+  .text-down {
+    color: #389e0d;
+  }
+  .bg-up {
+    background-color: #cf1322;
+  }
+  .bg-down {
+    background-color: #389e0d;
+  }
+}
+
+@layer components {
+  /* 输入区域卡片 */
+  .panel-input {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
+  }
+
+  /* 结果区域卡片 */
+  .panel-result {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
+  }
+
+  /* 指标卡片 */
+  .metric-card {
+    @apply bg-gradient-to-br from-white to-gray-50 rounded-lg border border-gray-200 p-4 flex flex-col gap-1;
+  }
+
+  .metric-value {
+    @apply text-2xl font-bold text-gray-900;
+  }
+
+  .metric-label {
+    @apply text-xs text-gray-500;
+  }
+
+  .metric-positive {
+    @apply text-bull-red;
+  }
+
+  .metric-negative {
+    @apply text-bear-green;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 3px;
+  }
+}
