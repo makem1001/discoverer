@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-灵犀（Lingxi）A股量化回测系统 — 全端API测试脚本
+发现者（Discoverer）A股量化回测系统 — 全端API测试脚本
 QA 测试工程师：测试所有公开和认证端点的功能、边界条件、错误处理
 """
 
@@ -288,7 +288,7 @@ except Exception as e:
 
 # 4b. 错误密码
 # First register a test user
-test_email = f"qa_test_{int(time.time())}@lingxi.test"
+test_email = f"qa_test_{int(time.time())}@discoverer.test"
 test_password = "QaTest123!"
 
 try:
@@ -448,7 +448,7 @@ print("\n── 登录准备 ──")
 
 try:
     # 注册
-    unique_email = f"qa_login_test_{int(time.time())}@lingxi.test"
+    unique_email = f"qa_login_test_{int(time.time())}@discoverer.test"
     r = client.post(f"{BASE_URL}/api/auth/register", json={
         "email": unique_email,
         "password": test_password,

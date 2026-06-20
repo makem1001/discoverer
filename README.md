@@ -1,4 +1,4 @@
-# 灵犀（Lingxi）— A股大白话量化回测系统
+# 发现者（Discoverer）— A股大白话量化回测系统
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -98,4 +98,4 @@ discoverer/
 
 ## License
 
-MIT © 2026 灵犀（Lingxi）
+MIT © 2026 发现者（Discoverer）

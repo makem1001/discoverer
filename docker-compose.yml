@@ -1,6 +1,6 @@
 version: "3.9"
 
-# ── 灵犀（Discoverer）— 一键部署配置 ──────────────────
+# ── 发现者（Discoverer）— 一键部署配置 ──────────────────
 # 启动: docker-compose up -d
 # 访问: http://localhost:3000 (前端) / http://localhost:8000 (后端API)
 

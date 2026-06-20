@@ -1,5 +1,5 @@
 /**
- * 灵犀（Lingxi）— 网格搜索类型定义
+ * 发现者（Discoverer）— 网格搜索类型定义
  *
  * 与后端 Pydantic schemas.py 一一对应。
  */

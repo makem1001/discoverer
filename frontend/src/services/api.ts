@@ -1,5 +1,5 @@
 /**
- * 灵犀（Lingxi）— API 服务层
+ * 发现者（Discoverer）— API 服务层
  *
  * 提供与后端交互的独立 API 函数，可在组件或非组件上下文中调用。
  * 基于 fetch，统一处理 API_BASE 前缀、JWT 认证和错误响应。
