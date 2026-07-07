@@ -79,16 +79,17 @@ const TopNav: React.FC = () => {
       value={currentTab >= 0 ? currentTab : 0}
       onChange={handleTabChange}
       variant="scrollable"
-      scrollButtons="auto"
+      scrollButtons={true}
+      allowScrollButtonsMobile
       sx={{
         minHeight: 56,
         width: '100%',
         '& .MuiTab-root': {
           minHeight: 56,
           textTransform: 'none',
-          fontSize: '0.9rem',
+          fontSize: '0.85rem',
           fontWeight: 500,
-          px: 2.5,
+          px: 1.5,
         },
         '& .Mui-selected': {
           color: '#1a73e8',
