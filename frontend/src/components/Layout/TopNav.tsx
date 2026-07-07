@@ -75,35 +75,39 @@ const TopNav: React.FC = () => {
 
   // ── 桌面端 Tab 导航 ──
   const desktopTabs = (
-    <Tabs
-      value={currentTab >= 0 ? currentTab : 0}
-      onChange={handleTabChange}
-      variant="scrollable"
-      scrollButtons={true}
-      allowScrollButtonsMobile
+    <Box
       sx={{
-        minHeight: 56,
-        width: '100%',
-        '& .MuiTab-root': {
-          minHeight: 56,
-          textTransform: 'none',
-          fontSize: '0.85rem',
-          fontWeight: 500,
-          px: 1.5,
-        },
-        '& .Mui-selected': {
-          color: '#1a73e8',
-        },
-        '& .MuiTabs-indicator': {
-          backgroundColor: '#1a73e8',
-          height: 3,
-        },
+        overflowX: 'auto',
+        whiteSpace: 'nowrap',
+        WebkitOverflowScrolling: 'touch',
+        '&::-webkit-scrollbar': { height: 4 },
+        '&::-webkit-scrollbar-thumb': { backgroundColor: 'rgba(0,0,0,0.15)', borderRadius: 2 },
+        '&::-webkit-scrollbar-track': { backgroundColor: 'transparent' },
       }}
     >
-      {TAB_CONFIG.map((tab) => (
-        <Tab key={tab.path} label={tab.label} />
-      ))}
-    </Tabs>
+      <Tabs
+        value={currentTab >= 0 ? currentTab : 0}
+        onChange={handleTabChange}
+        variant="standard"
+        sx={{ minHeight: 56, '.MuiTabs-flexContainer': { flexWrap: 'nowrap' } }}
+      >
+        {TAB_CONFIG.map((tab) => (
+          <Tab
+            key={tab.path}
+            label={tab.label}
+            sx={{
+              minHeight: 56,
+              textTransform: 'none',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              px: 1.5,
+              whiteSpace: 'nowrap',
+              minWidth: 'auto',
+            }}
+          />
+        ))}
+      </Tabs>
+    </Box>
   );
 
   // ── 移动端 Drawer ──
@@ -325,9 +329,9 @@ const TopNav: React.FC = () => {
             )}
           </Box>
 
-          {/* 桌面端 Tabs：占满剩余宽度，防止被右侧用户菜单挤占 */}
+          {/* 桌面端 Tabs：原生 CSS 横向滚动 */}
           {!isMobile && (
-            <Box sx={{ flex: 1, minWidth: 0, overflow: 'hidden', display: 'flex', mx: 1 }}>
+            <Box sx={{ flex: 1, minWidth: 0, mx: 1 }}>
               {desktopTabs}
             </Box>
           )}
