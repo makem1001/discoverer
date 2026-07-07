@@ -82,6 +82,7 @@ const TopNav: React.FC = () => {
       scrollButtons="auto"
       sx={{
         minHeight: 56,
+        width: '100%',
         '& .MuiTab-root': {
           minHeight: 56,
           textTransform: 'none',
@@ -325,7 +326,7 @@ const TopNav: React.FC = () => {
 
           {/* 桌面端 Tabs：占满剩余宽度，防止被右侧用户菜单挤占 */}
           {!isMobile && (
-            <Box sx={{ flex: 1, minWidth: 0, overflow: 'hidden', mx: 1 }}>
+            <Box sx={{ flex: 1, minWidth: 0, overflow: 'hidden', display: 'flex', mx: 1 }}>
               {desktopTabs}
             </Box>
           )}
