@@ -323,8 +323,12 @@ const TopNav: React.FC = () => {
             )}
           </Box>
 
-          {/* 桌面端 Tabs */}
-          {!isMobile && desktopTabs}
+          {/* 桌面端 Tabs：占满剩余宽度，防止被右侧用户菜单挤占 */}
+          {!isMobile && (
+            <Box sx={{ flex: 1, minWidth: 0, overflow: 'hidden', mx: 1 }}>
+              {desktopTabs}
+            </Box>
+          )}
 
           {/* 右侧操作：用户菜单 */}
           <Box sx={{ ml: 'auto', display: 'flex', gap: 0.5, alignItems: 'center' }}>

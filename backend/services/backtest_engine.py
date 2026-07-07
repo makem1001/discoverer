@@ -747,8 +747,11 @@ def _simulate_trades_numba(
                         avg_loss = al / (kelly_window - kw) if (kelly_window - kw) > 0 else 1.0
                         if avg_loss > 0.0:
                             b = avg_win / avg_loss
-                            kelly_f = (b * win_pct - (1.0 - win_pct)) / b
-                            kelly_f = max(0.01, min(kelly_f, max_position_pct))
+                            if b > 0.0:
+                                kelly_f = (b * win_pct - (1.0 - win_pct)) / b
+                                kelly_f = max(0.01, min(kelly_f, max_position_pct))
+                            else:
+                                kelly_f = 0.01
                     position_pct = kelly_f
                 elif position_sizing == POSITION_HALF_KELLY:
                     position_pct = kelly_f * 0.5
