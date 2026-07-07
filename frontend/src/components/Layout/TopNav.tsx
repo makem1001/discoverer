@@ -73,45 +73,48 @@ const TopNav: React.FC = () => {
     setAnchorEl(null);
   };
 
-  // ── 桌面端 Tab 导航 ──
+  // ── 桌面端 Tab 导航（纯 Button + overflow-x:auto） ──
   const desktopTabs = (
     <Box
       sx={{
+        display: 'flex',
+        height: 56,
+        alignItems: 'stretch',
         overflowX: 'auto',
-        WebkitOverflowScrolling: 'touch',
-        '&::-webkit-scrollbar': { height: 4 },
-        '&::-webkit-scrollbar-thumb': { backgroundColor: 'rgba(0,0,0,0.15)', borderRadius: 2 },
-        '&::-webkit-scrollbar-track': { backgroundColor: 'transparent' },
+        flex: 1,
+        minWidth: 0,
+        '&::-webkit-scrollbar': { height: 3 },
+        '&::-webkit-scrollbar-thumb': { backgroundColor: 'rgba(0,0,0,0.12)', borderRadius: 2 },
       }}
     >
-      <Tabs
-        value={currentTab >= 0 ? currentTab : 0}
-        onChange={handleTabChange}
-        variant="standard"
-        sx={{
-          minHeight: 56,
-          display: 'inline-flex',
-          minWidth: 'max-content',
-          '.MuiTabs-flexContainer': { flexWrap: 'nowrap' },
-        }}
-      >
-        {TAB_CONFIG.map((tab) => (
-          <Tab
+      {TAB_CONFIG.map((tab) => {
+        const active = location.pathname === tab.path;
+        return (
+          <Button
             key={tab.path}
-            label={tab.label}
+            onClick={() => navigate(tab.path)}
+            disableRipple
             sx={{
-              minHeight: 56,
+              flexShrink: 0,
+              minWidth: 'auto',
+              height: '100%',
+              px: 1.5,
               textTransform: 'none',
               fontSize: '0.85rem',
-              fontWeight: 500,
-              px: 1.5,
-              whiteSpace: 'nowrap',
-              minWidth: 'auto',
-              flex: '0 0 auto',
+              fontWeight: active ? 600 : 400,
+              color: active ? '#1a73e8' : '#374151',
+              borderRadius: 0,
+              borderBottom: active ? '3px solid #1a73e8' : '3px solid transparent',
+              '&:hover': {
+                bgcolor: 'rgba(26,115,232,0.04)',
+                borderBottomColor: active ? '#1a73e8' : '#d1d5db',
+              },
             }}
-          />
-        ))}
-      </Tabs>
+          >
+            {tab.label}
+          </Button>
+        );
+      })}
     </Box>
   );
 
@@ -334,12 +337,8 @@ const TopNav: React.FC = () => {
             )}
           </Box>
 
-          {/* 桌面端 Tabs：原生 CSS 横向滚动 */}
-          {!isMobile && (
-            <Box sx={{ flex: 1, minWidth: 0, mx: 1 }}>
-              {desktopTabs}
-            </Box>
-          )}
+          {/* 桌面端 Tabs */}
+          {!isMobile && desktopTabs}
 
           {/* 右侧操作：用户菜单 */}
           <Box sx={{ ml: 'auto', display: 'flex', gap: 0.5, alignItems: 'center' }}>
