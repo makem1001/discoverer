@@ -78,7 +78,6 @@ const TopNav: React.FC = () => {
     <Box
       sx={{
         overflowX: 'auto',
-        whiteSpace: 'nowrap',
         WebkitOverflowScrolling: 'touch',
         '&::-webkit-scrollbar': { height: 4 },
         '&::-webkit-scrollbar-thumb': { backgroundColor: 'rgba(0,0,0,0.15)', borderRadius: 2 },
@@ -89,7 +88,12 @@ const TopNav: React.FC = () => {
         value={currentTab >= 0 ? currentTab : 0}
         onChange={handleTabChange}
         variant="standard"
-        sx={{ minHeight: 56, '.MuiTabs-flexContainer': { flexWrap: 'nowrap' } }}
+        sx={{
+          minHeight: 56,
+          display: 'inline-flex',
+          minWidth: 'max-content',
+          '.MuiTabs-flexContainer': { flexWrap: 'nowrap' },
+        }}
       >
         {TAB_CONFIG.map((tab) => (
           <Tab
@@ -103,6 +107,7 @@ const TopNav: React.FC = () => {
               px: 1.5,
               whiteSpace: 'nowrap',
               minWidth: 'auto',
+              flex: '0 0 auto',
             }}
           />
         ))}
