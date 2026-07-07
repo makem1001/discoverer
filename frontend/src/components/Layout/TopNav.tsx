@@ -76,13 +76,15 @@ const TopNav: React.FC = () => {
   // ── 桌面端 Tab 导航（纯 Button + overflow-x:auto） ──
   const desktopTabs = (
     <Box
-      sx={{
+      style={{
         display: 'flex',
-        height: 56,
-        alignItems: 'stretch',
         overflowX: 'auto',
-        flex: 1,
+        flex: '1 1 0',
         minWidth: 0,
+        height: '56px',
+        alignItems: 'stretch',
+      }}
+      sx={{
         '&::-webkit-scrollbar': { height: 3 },
         '&::-webkit-scrollbar-thumb': { backgroundColor: 'rgba(0,0,0,0.12)', borderRadius: 2 },
       }}
@@ -300,7 +302,7 @@ const TopNav: React.FC = () => {
           color: '#1f2937',
         }}
       >
-        <Toolbar sx={{ minHeight: '56px !important', px: 2 }}>
+        <Toolbar sx={{ minHeight: '56px !important', px: 2, flexWrap: 'nowrap !important' }}>
           {/* 移动端汉堡菜单 */}
           {isMobile && (
             <IconButton
@@ -341,7 +343,7 @@ const TopNav: React.FC = () => {
           {!isMobile && desktopTabs}
 
           {/* 右侧操作：用户菜单 */}
-          <Box sx={{ ml: 'auto', display: 'flex', gap: 0.5, alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', flexShrink: 0 }}>
             {userMenu}
           </Box>
         </Toolbar>
